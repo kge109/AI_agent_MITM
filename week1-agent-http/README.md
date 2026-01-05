@@ -10,14 +10,8 @@ Week 1: Agent HTTP Communication & Packet Analysis
 
 2. 프로젝트 구조
 
-week1/
-├── agent_a/ (Client)
-│   ├── agent_a.py
-│   └── Dockerfile
-├── agent_b/ (Server)
-│   ├── agent_b.py
-│   └── Dockerfile
-└── docker-compose.yml
+<img width="264" height="202" alt="스크린샷 2026-01-05 오후 9 45 49" src="https://github.com/user-attachments/assets/a85cbced-2326-4ab5-a322-dacd1d78aa39" />
+
 
 
 3. 실행 방법
