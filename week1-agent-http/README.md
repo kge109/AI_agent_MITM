@@ -16,7 +16,7 @@ Week 1: Agent HTTP Communication & Packet Analysis
 
 3. 실행 방법
 
-# 컨테이너 빌드 및 실행
+터미널에서
 docker-compose up --build
 
 
