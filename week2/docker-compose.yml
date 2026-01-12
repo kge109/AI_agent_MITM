@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  tool_server:
+    build: ./tool_server
+    container_name: tool_server
+    networks:
+      - agent_net
+
+  agent_b:
+    build: ./agent_b
+    container_name: agent_b
+    depends_on:
+      - tool_server
+    networks:
+      - agent_net
+
+  agent_a:
+    build: ./agent_a
+    container_name: agent_a
+    environment:
+      - PROMPT=hello  # 여기에 'file'이 없으면 echo로 작동함
+    depends_on:
+      - agent_b
+    networks:
+      - agent_net
+
+networks:
+  agent_net:
+    driver: bridge
