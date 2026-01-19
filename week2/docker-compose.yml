@@ -3,10 +3,6 @@ services:
   tool_server:
     build: ./tool_server
     container_name: tool_server
-    ports:
-      - "8001:8001"
-    volumes:
-      - ./data:/data #로컬 파일 수정 시 도커에도 반영
     networks:
       - agent_net
 
@@ -17,20 +13,12 @@ services:
       - tool_server
     networks:
       - agent_net
-    environment:
-      - HTTP_PROXY=http://host.docker.internal:8080
-      - HTTPS_PROXY=http://host.docker.internal:8080
-    ports:
-      - "8000:8000"
 
   agent_a:
     build: ./agent_a
     container_name: agent_a
     environment:
-      - PROMPT=read_file at /data/hello.txt # 여기에 'file'이라는 말 없으면 echo로 작동함
-      #윗줄 path 설정해서 파일 내용 읽어오게 하기
-      - HTTP_PROXY=http://host.docker.internal:8080
-      - HTTPS_PROXY=http://host.docker.internal:8080
+      - PROMPT=hello  # 여기에 'file'이 없으면 echo로 작동함
     depends_on:
       - agent_b
     networks:
