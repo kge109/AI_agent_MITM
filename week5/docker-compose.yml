@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  tool_server:
+    build: ./tool_server
+    container_name: tool_server
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data:/data #로컬 파일 수정 시 도커에도 반영
+    networks:
+      - agent_net
+
+  agent_b:
+    build: ./agent_b
+    container_name: agent_b
+    depends_on:
+      - tool_server
+    networks:
+      - agent_net
+    ports:
+      - "8000:8002"
+
+  agent_a:
+    build: ./agent_a
+    container_name: agent_a
+    depends_on:
+      - agent_b
+    networks:
+      - agent_net
+
+networks:
+  agent_net:
+    driver: bridge
